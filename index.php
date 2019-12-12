@@ -16,8 +16,6 @@ if(isset($_POST['submit'])){
 ?>
 
 
-
-
 <body class="bg-gradient-primary">
 
   <div class="container">
@@ -43,6 +41,16 @@ if(isset($_POST['submit'])){
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"  autocomplete="off">
+
+                        <?php 
+                          $typeOfError = "success";
+                          if($msg == "Invalid Username/Password") {
+                            $typeOfError = "danger";
+                          }
+
+                          if($valid) echo "<div class='alert alert-$typeOfError'>$msg</div>";
+                        ?>
+
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
