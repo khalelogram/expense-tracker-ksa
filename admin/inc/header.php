@@ -1,3 +1,4 @@
+<?php if(!isset($page_title)) { $page_title = 'Expense System'; } ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Expenses System</title>
+  <title><?php echo $page_title ?></title>
 
   <!-- Custom fonts for this template-->
   <link href="fonts/css/all.min.css" rel="stylesheet" type="text/css">
