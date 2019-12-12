@@ -8,9 +8,6 @@ if(isset($_POST['submit'])){
   $password = $_POST['hashed_password'];
 
 
-
-
-
 $query = "INSERT INTO tbluser(username, password) VALUES('$username', '$password')";
 
 $result = mysqli_query($dbconnection, $query);
