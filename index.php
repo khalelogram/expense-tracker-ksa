@@ -1,17 +1,17 @@
 <?php 
 
-include 'db.php';
+require_once 'admin/private/database.php';
 
 
 if(isset($_POST['submit'])){
-  $Email = $_POST['Email'];
-  $Password = $_POST['Password'];
+  $pmail = $_POST['email'];
+  $password = $_POST['hashed_password'];
 
 
 
 
 
-$query = "INSERT INTO tbluser(Username, Password) VALUES('$Username', ' $Password')";
+$query = "INSERT INTO tbluser(username, password) VALUES('$username', '$password')";
 
 $result = mysqli_query($dbconnection, $query);
 
@@ -21,8 +21,6 @@ if(!$result){
 
 }
  ?> 
-
-
 
 
 <!DOCTYPE html>
@@ -80,8 +78,7 @@ if(!$result){
                       </div>
                     </div>
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
-                    <a href="index.php">
-                     
+                    <a href="profile.php">
                     </a> 
                   </form>
                   <hr>
