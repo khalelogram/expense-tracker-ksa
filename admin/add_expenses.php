@@ -5,7 +5,11 @@ $page_title = 'Add Expense';
 include('inc/header.php');
 
 
-
+if(is_post_request()) {
+    $date = $_POST['date'];
+    $item = $_POST['item'];
+    $costitem = $_POST['costitem'];
+}
 
 ?>
 
@@ -95,18 +99,18 @@ include('inc/header.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
          <h1 class="h3 mb-2 text-gray-800"><?php echo $page_title; ?></h1>
-          <form>
+          <form method="POST">
               <div class="form-group">
-                <label for="formGroupExampleInput">Expense Date</label>
-                <input type="date" class="form-control" id="formGroupExampleInput" name="expense">
+                <label for="expense">Expense Date</label>
+                <input type="date" class="form-control" id="date" name="date">
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput2">Item</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="item">
+                <label for="item">Item</label>
+                <input type="text" class="form-control" id="item" name="item">
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput2">Cost of item</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name="costitem">
+                <label for="costitem">Cost of item</label>
+                <input type="text" class="form-control" id="costitem" name="costitem">
               </div>
               <button type="submit" name="submit" class="btn btn-primary">Add</button>
           </form>        
