@@ -9,6 +9,20 @@ if(is_post_request()) {
     $date = $_POST['date'];
     $item = $_POST['item'];
     $costitem = $_POST['costitem'];
+
+    $query = "INSERT INTO userexpense ";
+    $query .= "( user_id, expense_date, expense_item, expense_cost, note_date ) ";
+    $query .= "VALUES ( ";
+    $query .= "'" . $date . "', ";
+    $query .= "'" . escape_string( $item ) . "', ";
+    $query .= "'" . escape_string( $costitem ) . "'";
+    $query .= ")";
+
+    $result = mysqli_query($db, $query);
+    if(!$result) {
+      exit("Query failed:" . mysqli_error($db));
+    }
+    
 }
 
 ?>
