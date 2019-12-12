@@ -47,9 +47,9 @@
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-      <a class="collapse-item" href="datewise-rep.html">Daily</a>
-      <a class="collapse-item" href="monthwise-rep.html">Monthly</a>
-      <a class="collapse-item" href="yearwise-rep.html">Yearly</a>
+      <a class="collapse-item" href="datewise-rep.php">Daily</a>
+      <a class="collapse-item" href="monthwise-rep.php">Monthly</a>
+      <a class="collapse-item" href="yearwise-rep.php">Yearly</a>
     </div>
   </div>
 </li>
