@@ -1,5 +1,11 @@
+<?php
 
-<?php include('inc/header.php'); ?>
+require_once('private/init.php');
+$page_title = 'Manage Expenses';
+include('inc/header.php');
+
+
+?>
 
 <body id="page-top">
 
@@ -88,7 +94,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Add Expenses</h1>
+          <h1 class="h3 mb-2 text-gray-800"><?php echo $page_title; ?></h1>
           
 
             <!-- DataTales Example -->

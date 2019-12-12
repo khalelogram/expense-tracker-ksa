@@ -1,4 +1,13 @@
-<?php include('inc/header.php'); ?>
+<?php 
+
+require_once('private/init.php');
+$page_title = 'Add Expense';
+include('inc/header.php');
+
+
+
+
+?>
 
 <body id="page-top">
 
@@ -85,8 +94,22 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-        
+         <h1 class="h3 mb-2 text-gray-800"><?php echo $page_title; ?></h1>
+          <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Expense Date</label>
+                <input type="date" class="form-control" id="formGroupExampleInput" name="expense">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Item</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="item">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Cost of item</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" name="costitem">
+              </div>
+              <button type="submit" name="submit" class="btn btn-primary">Add</button>
+          </form>        
         </div>
         <!-- /.container-fluid -->
 

@@ -1,4 +1,9 @@
-<?php include('inc/header.php'); ?>
+<?php 
+
+require_once('private/init.php');
+include('inc/header.php');
+
+?>
 
 <body id="page-top">
 
