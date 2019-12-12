@@ -47,7 +47,9 @@
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-      <a class="collapse-item" href="#">Day Expenses</a>
+      <a class="collapse-item" href="datewise-rep.php">Daily</a>
+      <a class="collapse-item" href="monthwise-rep.php">Monthly</a>
+      <a class="collapse-item" href="yearwise-rep.php">Yearly</a>
     </div>
   </div>
 </li>
@@ -65,14 +67,14 @@
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="change_password.php">
     <i class="fas fa-fw fa-chart-area"></i>
     <span>Change Password</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="logout.php">
     <i class="fas fa-fw fa-table"></i>
     <span>Logout</span></a>
 </li>
