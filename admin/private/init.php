@@ -3,6 +3,7 @@
   session_start(); // turn on sessions
 
   require_once('database.php');
+  require_once('db_query_function.php');
   require_once('functions.php');
 
   $db = db_connection();
