@@ -1,5 +1,6 @@
-<?php include('inc/header.php'); ?>
-
+<?php
+include 'inc/header.php';
+?>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -82,7 +83,7 @@
 
         </nav>
         <!-- End of Topbar -->
-        
+        <h4 class="changePass">Change Password</h4>
 
         <form class="formcp" >
     <div class="form-group">
@@ -104,10 +105,14 @@
   </form>
       <style>
     .formcp{
-      padding-top: 90px;
+      padding-top: 60px;
       margin: 0 auto; 
       width:1000px;
     }
-      </style>
-      
+    .changePass{
+      padding-left: 60px;
+    }
+      </style>    
   <?php include('inc/footer.php'); ?>
+  
+  
