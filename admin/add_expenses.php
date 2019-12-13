@@ -11,18 +11,19 @@ if(is_post_request()) {
     $costitem = $_POST['costitem'];
 
     $query = "INSERT INTO userexpense ";
-    $query .= "( user_id, expense_date, expense_item, expense_cost, note_date ) ";
-    $query .= "VALUES ( ";
+    $query .= "(user_id, expense_date, expense_item, expense_cost, note_date) ";
+    $query .= "VALUES (";
+    $query .= "'1', ";
     $query .= "'" . $date . "', ";
-    $query .= "'" . escape_string( $item ) . "', ";
-    $query .= "'" . escape_string( $costitem ) . "'";
+    $query .= "'" . $item . "', ";
+    $query .= "'" . $costitem . "', ";
+    $query .= "now()";
     $query .= ")";
-
+    // echo $query;
     $result = mysqli_query($db, $query);
     if(!$result) {
-      exit("Query failed:" . mysqli_error($db));
+      exit("Data query failed" . mysqli_error($db));
     }
-    
 }
 
 ?>

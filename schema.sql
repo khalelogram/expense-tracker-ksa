@@ -28,8 +28,8 @@ CREATE TABLE userexpense (
 
 -- for user dummy data
 
-INSERT INTO users (fullname, username, email, mobile_number, hashed_password, reg_date ) VALUES ('John Taylor', 'john', 'john@gmail.com', '09453567891', 'bdjsbsdgsdg', 'now()');
-INSERT INTO users (fullname, username, email, mobile_number, hashed_password, reg_date ) VALUES ('Howard Petersen', 'howard', 'hp_01@gmail.com', '09215678974', 'xssdgsgga', 'now()');
+INSERT INTO users (fullname, username, email, mobile_number, hashed_password, reg_date ) VALUES ('John Taylor', 'john', 'john@gmail.com', '09453567891', 'bdjsbsdgsdg', '2014-05-30 06:06:19');
+INSERT INTO users (fullname, username, email, mobile_number, hashed_password, reg_date ) VALUES ('Howard Petersen', 'howard', 'hp_01@gmail.com', '09215678974', 'xssdgsgga', '2015-09-10 09:55:45');
 
 -- for userexpense dummy data
 
