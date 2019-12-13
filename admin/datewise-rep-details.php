@@ -1,165 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include('private/init.php');
+include('inc/header.php'); 
+?>
 
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Expenses System</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="fonts/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="css/style.min.css" rel="stylesheet">
-
-</head>
 <body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-
-
-
-
-
-
-
-
-
-
-
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <!-- <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div> -->
-        <div class="sidebar-brand-text mx-3">Expenses System</div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Add Expenses</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Expenses</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Expenses</h6> -->
-            <a class="collapse-item" href="buttons.html">Add Expenses</a>
-            <a class="collapse-item" href="manage_expenses.html">Mange Expenses</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Expense Report</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Profile</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+    <?php include('inc/sidebar.php'); ?>
     <!-- End of Sidebar -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -365,31 +216,94 @@
 
 
 
-<h1>You can view your expenses per day</h1>
 
+
+
+
+
+<div class="row">
+      <div class="col-lg-12">
+      
+        <div class="panel panel-default">
+          <div class="panel-heading">Datewise Expense Report</div>
+          <div class="panel-body">
 
             <div class="col-md-12">
-              <form role="form" method="post" action="datewise-rep-details.php" name="bwdatesreport">
-                <div class="form-group">
-                  <label>From Date</label>
-                  <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
-                </div>
-                <div class="form-group">
-                  <label>To Date</label>
-                  <input class="form-control" type="date"  id="todate" name="todate" required="true">
-                </div>
-                
+          
+<?php
+$fdate=$_POST['fromdate'];
+ $tdate=$_POST['todate'];
+$rtype=$_POST['requesttype'];
+?>
+<h5 align="center" style="color:blue">Datewise Expense Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
+<hr />
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <tr>
+              <th>S.NO</th>
+              <th>Date</th>
+              <th>Expense Amount</th>
+                </tr>
+                                        </tr>
+                                        </thead>
+ <?php
+$userid=$_SESSION['detsuid'];
+$ret=mysqli_query($con,"SELECT ExpenseDate,SUM(ExpenseCost) as totaldaily FROM `tblexpense`  where (ExpenseDate BETWEEN '$fdate' and '$tdate') && (UserId='$userid') group by ExpenseDate");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
+
+?>
               
-                
-                <div class="form-group has-success">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                </div>
-                
-                
-                </div>
-                
-              </form>
+                <tr>
+                  <td><?php echo $cnt;?></td>
+            
+                  <td><?php  echo $row['ExpenseDate'];?></td>
+                  <td><?php  echo $ttlsl=$row['totaldaily'];?></td>
+           
+           
+                </tr>
+                <?php
+                $totalsexp+=$ttlsl; 
+$cnt=$cnt+1;
+}?>
+
+ <tr>
+  <th colspan="2" style="text-align:center">Grand Total</th>     
+  <td><?php echo $totalsexp;?></td>
+ </tr>     
+
+                                    </table>
+
+
+
             </div>
+          </div>
+        </div><!-- /.panel-->
+      </div><!-- /.col-->
+      <?php include_once('includes/footer.php');?>
+    </div><!-- /.row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -403,13 +317,7 @@
 
             
        <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
+<?php include 'inc/footer.php'; ?>
       <!-- End of Footer -->
   </div><!--/.main-->
 
