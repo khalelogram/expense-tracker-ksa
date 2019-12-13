@@ -1,3 +1,4 @@
+
 <?php
 include('private/init.php');
 include('inc/header.php'); 
@@ -99,7 +100,7 @@ if (strlen($_SESSION['detsuid']!=0)) {
       <div class="col-lg-12">
       
         <div class="panel panel-default">
-          <div class="panel-heading">Datewise Expense Report</div>
+          <div class="panel-heading">Yearwise Expense Report</div>
           <div class="panel-body">
 
             <div class="col-md-12">
@@ -109,21 +110,21 @@ $fdate=$_POST['fromdate'];
  $tdate=$_POST['todate'];
 $rtype=$_POST['requesttype'];
 ?>
-<h5 align="center" style="color:blue">Datewise Expense Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
+<h5 align="center" style="color:blue">Yearwise Expense Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
 <hr />
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>
                                             <tr>
               <th>S.NO</th>
-              <th>Date</th>
+              <th>YEAR</th>
               <th>Expense Amount</th>
                 </tr>
                                         </tr>
                                         </thead>
  <?php
 $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 'userexpense'  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by expense_date");
+$ret=mysqli_query($con,"SELECT year(expense_date) as rptyear,SUM(expense_cost) as totalyear FROM userexpense  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by year(expense_date)");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -132,8 +133,8 @@ while ($row=mysqli_fetch_array($ret)) {
                 <tr>
                   <td><?php echo $cnt;?></td>
             
-                  <td><?php  echo $row['expense_date'];?></td>
-                  <td><?php  echo $ttlsl=$row['totaldaily'];?></td>
+                  <td><?php  echo $row['rptyear'];?></td>
+                  <td><?php  echo $ttlsl=$row['totalyear'];?></td>
            
            
                 </tr>
@@ -141,7 +142,6 @@ while ($row=mysqli_fetch_array($ret)) {
                 $totalsexp+=$ttlsl; 
 $cnt=$cnt+1;
 }?>
-
  <tr>
   <th colspan="2" style="text-align:center">Grand Total</th>     
   <td><?php echo $totalsexp;?></td>
