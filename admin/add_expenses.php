@@ -6,24 +6,11 @@ include('inc/header.php');
 
 
 if(is_post_request()) {
-    $date = $_POST['date'];
-    $item = $_POST['item'];
-    $costitem = $_POST['costitem'];
-
-    $query = "INSERT INTO userexpense ";
-    $query .= "(user_id, expense_date, expense_item, expense_cost, note_date) ";
-    $query .= "VALUES (";
-    $query .= "'1', ";
-    $query .= "'" . $date . "', ";
-    $query .= "'" . $item . "', ";
-    $query .= "'" . $costitem . "', ";
-    $query .= "now()";
-    $query .= ")";
-    // echo $query;
-    $result = mysqli_query($db, $query);
-    if(!$result) {
-      exit("Data query failed" . mysqli_error($db));
-    }
+  $expense_item = [];
+  $expense_item['date'] = $_POST['date'];
+  $expense_item['item'] = $_POST['item'];  
+  $expense_item['costitem'] = $_POST['costitem'];
+  insert_expenses($expense_item);
 }
 
 ?>

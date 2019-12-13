@@ -19,5 +19,11 @@ function confirm_db_connection() {
 
 // SQL injection
 function __escape_string($string) {
-    return mysqli_real_escape_string($db, $string);
+    return mysqli_real_escape_string(db_connection(), $string);
+}
+
+function check_query_from_db($result) {
+    if(!$result) {
+        exit("Data query failed:" . mysqli_error(db_connection()));
+      }
 }
