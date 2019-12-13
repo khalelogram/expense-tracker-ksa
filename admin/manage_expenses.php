@@ -4,6 +4,17 @@ require_once('private/init.php');
 $page_title = 'Manage Expenses';
 include('inc/header.php');
 
+// $query = "SELECT * FROM userexpense ";
+// $query .= "WHERE user_id = '1'";
+
+$query = "SELECT * FROM userexpense ";
+$query .= " WHERE user_id = 3 ";
+$query .= "ORDER BY expense_item ASC";
+
+$result = mysqli_query($db, $query);
+if(!$result) {
+  exit("Data query failed:" . mysqli_error(db_connection()));
+}
 
 ?>
 
@@ -95,7 +106,7 @@ include('inc/header.php');
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"><?php echo $page_title; ?></h1>
-          
+          <?php //echo var_dump($result); ?>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -104,49 +115,32 @@ include('inc/header.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>S.NO</th>
+                      <th>Expense Item</th>
+                      <th>Expense Cost</th>
+                      <th>Expense Date</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>S.NO</th>
+                      <th>Expense Item</th>
+                      <th>Expense Cost</th>
+                      <th>Expense Date</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
+                  <?php while($userex = mysqli_fetch_assoc($result)) : ?>
                     <tr>
-                      <td>Shad Decker</td>
-                      <td>Regional Director</td>
-                      <td>Edinburgh</td>
-                      <td>51</td>
-                      <td>2008/11/13</td>
-                      <td>$183,000</td>
+                      <td></td>
+                      <td><?php echo $userex['expense_item']; ?></td>
+                      <td><?php echo $userex['expense_cost']; ?></td>
+                      <td><?php echo $userex['expense_date']; ?></td>
+                      <td><a href="manage_expenses.php?delete=<?php echo $userex['id']; ?>">Delete</a></td>
                     </tr>
-                    <tr>
-                      <td>Michael Bruce</td>
-                      <td>Javascript Developer</td>
-                      <td>Singapore</td>
-                      <td>29</td>
-                      <td>2011/06/27</td>
-                      <td>$183,000</td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider</td>
-                      <td>Customer Support</td>
-                      <td>New York</td>
-                      <td>27</td>
-                      <td>2011/01/25</td>
-                      <td>$112,000</td>
-                    </tr>
+                  <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
