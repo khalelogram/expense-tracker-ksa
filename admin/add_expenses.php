@@ -11,6 +11,7 @@ if(is_post_request()) {
   $expense_item['item'] = $_POST['item'];  
   $expense_item['costitem'] = $_POST['costitem'];
   insert_expenses($expense_item);
+  header('Location: manage_expenses.php');
 }
 
 ?>
