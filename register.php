@@ -37,13 +37,14 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user" action="process.php" method="POST">
+              <form class="user" action="login.php" method="POST">
+                <?php include('admin/private/errors.php'); ?>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="Fullname">
+                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="Fullname" >
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="Username">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="Username" >
                   </div>
                   <div class="col-sm-6">
                     <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="MobileNumber">
@@ -60,7 +61,7 @@
                     <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="Cpass">
                   </div>
                 </div>
-                 <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+                 <input type="register" class="btn btn-primary btn-user btn-block" value="Register Account">
                  <a href="index.php"></a>
               </form>
               <hr>
