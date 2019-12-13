@@ -1,3 +1,4 @@
+
 <?php 
 require_once('private/init.php');
 include('inc/header.php');
@@ -90,17 +91,17 @@ include('inc/header.php');
 
 
    <!-- START OF MAIN CONTENT -->
-<h1>You can view your expenses per day</h1>
+<h1>CHECK YOUR DAILY EXPENSES</h1>
 
 
             <div class="col-md-12">
-              <form role="form" method="post" action="datewise-rep-details.php" name="bwdatesreport">
+              <form role="form" method="POST" action="datewise-rep-details.php" name="bwdatesreport">
                 <div class="form-group">
-                  <label>From Date</label>
+                  <label style="font-size: 25px;">From Date</label>
                   <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
                 </div>
                 <div class="form-group">
-                  <label>To Date</label>
+                  <label style="font-size: 25px;">To Date</label>
                   <input class="form-control" type="date"  id="todate" name="todate" required="true">
                 </div>
                 
@@ -111,9 +112,10 @@ include('inc/header.php');
                 </div>
                 
                 </form>
-                </div>
+            </div>
                 
               
+            
             </div>
 <!-- END OF MAIN CONTENT -->
 <?php include ('inc/footer.php'); ?>
