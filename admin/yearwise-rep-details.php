@@ -124,7 +124,7 @@ $rtype=$_POST['requesttype'];
                                         </thead>
  <?php
 $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"SELECT year(expense_date) as rptyear,SUM(expense_cost) as totalyear FROM userexpense  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by year(expense_date)");
+$ret=mysqli_query($db,"SELECT year(expense_date) as rptyear,SUM(expense_cost) as totalyear FROM userexpense  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by year(expense_date)");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

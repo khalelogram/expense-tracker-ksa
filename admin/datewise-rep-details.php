@@ -1,3 +1,4 @@
+
 <?php
 include('private/init.php');
 include('inc/header.php'); 
@@ -99,17 +100,16 @@ if (strlen($_SESSION['detsuid']!=0)) {
       <div class="col-lg-12">
       
         <div class="panel panel-default">
-          <div class="panel-heading">Datewise Expense Report</div>
-          <div class="panel-body">
+
+            <div class="panel-body">
 
             <div class="col-md-12">
           
 <?php
 $fdate=$_POST['fromdate'];
  $tdate=$_POST['todate'];
-$rtype=$_POST['requesttype'];
 ?>
-<h5 align="center" style="color:blue">Datewise Expense Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
+<h5 align="center" style="color:#1c10d0">Daily Expenses Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
 <hr />
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -123,8 +123,15 @@ $rtype=$_POST['requesttype'];
                                         </thead>
  <?php
 $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 'userexpense'  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by expense_date");
+$ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 'userexpense'  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by expense_date");
 $cnt=1;
+
+//  if ($db) {
+//   echo 'connected';
+// } else {
+//   echo 'not connected';
+// }
+
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
@@ -148,8 +155,6 @@ $cnt=$cnt+1;
  </tr>     
 
                                     </table>
-
-
 
             </div>
           </div>
