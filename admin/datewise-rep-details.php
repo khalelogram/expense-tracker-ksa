@@ -1,10 +1,7 @@
-
 <?php
 include('private/init.php');
 include('inc/header.php'); 
-if (strlen($_SESSION['detsuid']!=0)) {
-  header('location:logout.php');
-  } else{
+
 ?>
 
 <body id="page-top">
@@ -114,7 +111,7 @@ $fdate=$_POST['fromdate'];
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>
-                                            <tr>
+                <tr style="background-color: #4E73DF; color: white;">
               <th>S.NO</th>
               <th>Date</th>
               <th>Expense Amount</th>
@@ -122,16 +119,19 @@ $fdate=$_POST['fromdate'];
                                         </tr>
                                         </thead>
  <?php
-$userid=$_SESSION['detsuid'];
-$ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 'userexpense'  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by expense_date");
-$cnt=1;
+// $userid=$_SESSION['detsuid'];
+$ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM `userexpense`  where (expense_date BETWEEN '$fdate' and '$tdate')  group by expense_date");
+// && (user_id='$userid')
 
-//  if ($db) {
+
+// this code will check your connection to your database.
+//  if ($db) { 
 //   echo 'connected';
 // } else {
 //   echo 'not connected';
 // }
-
+$cnt=1;
+$totalsexp=0;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
@@ -150,7 +150,7 @@ $cnt=$cnt+1;
 }?>
 
  <tr>
-  <th colspan="2" style="text-align:center">Grand Total</th>     
+  <th colspan="2" style="background-color: #2b35af; color: white; text-align:center">Grand Total</th>     
   <td><?php echo $totalsexp;?></td>
  </tr>     
 
@@ -170,4 +170,4 @@ $cnt=$cnt+1;
 
 
  
-<?php } ?>
+<?php  ?>

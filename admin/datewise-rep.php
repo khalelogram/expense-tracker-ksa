@@ -9,6 +9,7 @@ include('inc/header.php');
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+
     <!-- Sidebar -->
     <?php include('inc/sidebar.php'); ?>
     <!-- End of Sidebar -->
@@ -95,7 +96,7 @@ include('inc/header.php');
 
 
             <div class="col-md-12">
-              <form role="form" method="POST" action="datewise-rep-details.php" name="bwdatesreport">
+              <form role="form" method="post" action="datewise-rep-details.php" name="bwdatesreport">
                 <div class="form-group">
                   <label style="font-size: 25px;">From Date</label>
                   <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
@@ -108,7 +109,7 @@ include('inc/header.php');
               
                 
                 <div class="form-group has-success">
-                    <input class="btn btn-primary" type="submit" value="Submit">
+                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
                 
                 </form>
