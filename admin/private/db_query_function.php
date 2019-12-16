@@ -39,3 +39,4 @@ function delete_user_expense($id) {
   check_query_from_db($result);
   header("Location: manage_expenses.php");
 }
+

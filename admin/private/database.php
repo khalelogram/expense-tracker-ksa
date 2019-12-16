@@ -26,3 +26,9 @@ function check_query_from_db($result) {
         exit("Data query failed:" . mysqli_error(db_connection()));
       }
 }
+
+
+
+
+
+
