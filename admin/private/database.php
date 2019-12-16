@@ -16,7 +16,6 @@ function confirm_db_connection() {
     }
 }
 
-
 // SQL injection
 function __escape_string($string) {
     return mysqli_real_escape_string(db_connection(), $string);

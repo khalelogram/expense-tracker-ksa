@@ -14,9 +14,6 @@ if(isset($_GET['delete'])) {
   $result = show_user_expense();
 }
 
-
-
-
 ?>
 
 <body id="page-top">
@@ -133,15 +130,17 @@ if(isset($_GET['delete'])) {
                     </tr>
                   </tfoot>
                   <tbody>
+                  <?php $count = 1; ?>
                   <?php while($userex = mysqli_fetch_assoc($result)) : ?>
                     <tr>
-                      <td></td>
+                      <td><?php echo $count; ?></td>
                       <td><?php echo $userex['expense_item']; ?></td>
                       <td><?php echo $userex['expense_cost']; ?></td>
                       <td><?php echo $userex['expense_date']; ?></td>
                       <td><a href="manage_expenses.php?delete=<?php echo esc_html(esc_u($userex['id'])); ?>">Delete</a></td>
                     </tr>
-                  <?php endwhile; ?>
+                    <?php $count++; ?>
+                  <?php  endwhile; ?>
                   </tbody>
                 </table>
               </div>
