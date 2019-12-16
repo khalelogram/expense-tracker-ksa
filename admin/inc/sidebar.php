@@ -60,7 +60,7 @@
 
 <!-- Nav Item - Profile -->
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="../admin/user_profile.php">
     <i class="fas fa-fw fa-user-alt"></i>
     <span>Profile</span></a>
 </li>
