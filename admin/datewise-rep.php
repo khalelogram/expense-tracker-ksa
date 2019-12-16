@@ -91,18 +91,16 @@ include('inc/header.php');
 
 
    <!-- START OF MAIN CONTENT -->
-<h3 style="padding-left: 5px">CHECK YOUR DAILY EXPENSES</h3>
-
-
       <div class="container" style="display: flex;">
               <div class="col-md-4">
               <form role="form" method="post" action="datewise-rep.php" name="bwdatesreport">
                 <div class="form-group">
-                  <label style="font-size: 25px;">From</label>
+                  <h5 style="padding-left: 5px">CHECK YOUR DAILY EXPENSES</h5>
+                  <label style="font-size: 15px;">From</label>
                   <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
                 </div>
                 <div class="form-group">
-                  <label style="font-size: 25px;">To</label>
+                  <label style="font-size: 15px;">To</label>
                   <input class="form-control" type="date"  id="todate" name="todate" required="true">
                 </div>
                   
@@ -153,6 +151,7 @@ $ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 
 // }
 $cnt=1;
 $totalsexp=0;
+
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
