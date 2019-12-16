@@ -1,3 +1,46 @@
+<?php
+require_once('admin/private/init.php'); 
+
+if(isset($_POST['submit']))
+  {
+    $fullname=$_POST['fullname'];
+    if (empty($fullname)){
+      echo "Please enter your full name.";
+    }
+    $username=$_POST['username'];
+    if (empty($username)){
+      echo "Please enter your full name.";
+    }
+    $mobilenumber=$_POST['mobilenumber'];
+    if (empty($mobilenumber)){
+      echo "Please enter your full name.";
+    }
+    $email=$_POST['email'];
+    if (empty($email)){
+      echo "Please enter your full name.";
+    }
+    $password=md5($_POST['password']);
+    if (empty($password)){
+      echo "Please enter your full name.";
+    }
+    // $cpassword=md5($_POST['cpass']);
+    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    $msg="This email associated with another account";
+    }
+    else{
+    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+    if ($query) {
+    $msg="You have successfully registered";
+  }
+  else
+    {
+      $msg="Something Went Wrong. Please try again";
+    }
+}
+}
+ ?>
 
 
 
@@ -21,6 +64,7 @@
   <!-- Custom styles for this template-->
   <link href="admin/css/style.min.css" rel="stylesheet">
 
+
 </head>
 
 <body class="bg-gradient-primary" style="overflow:hidden">
@@ -37,30 +81,31 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user" action="process.php" method="POST">
+              <form class="user" action="" method="POST">
+
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="Fullname">
+                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="Username">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="MobileNumber">
+                    <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="Email">
+                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="Password">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
                   </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="Cpass">
-                  </div>
+                 <!--  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="cpass">
+                  </div> -->
                 </div>
-                 <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+                 <button type="submit" value="Register Account" name="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
                  <a href="index.php"></a>
               </form>
               <hr>
