@@ -14,4 +14,4 @@ function insert_expenses($expense_item) {
 //   echo $query;
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
-}
+
