@@ -30,7 +30,7 @@ if(!$result) {
 </style>
 
 <body id="page-top">
-
+ <?php while($row = mysqli_fetch_assoc($result)) : ?>
 <!-- start wrapper -->
 <div id="wrapper">
 
@@ -88,8 +88,9 @@ if(!$result) {
 
 <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
+
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $row["fullname"]; ?></span>
                 <img class="img-profile rounded-circle" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>">
               </a>
 <!-- Dropdown - User Information -->
@@ -119,7 +120,7 @@ if(!$result) {
               <form action="update_profile.php" method="POST" enctype="multipart/form-data">
                 <a class="btn-update btn-style"><i class="fas fa-user-edit fa-sm fa-fw  text-gray-400"></i></a>
                 <input type="submit" value="Save Profile" class="btn-save btn-style" name="submit">
-                <?php while($row = mysqli_fetch_assoc($result)) : ?>
+               
                   <input type="hidden" name="userid" id="userid" value="<?php echo $row['id']; ?>">
 
                   <div class="text-center">                   
