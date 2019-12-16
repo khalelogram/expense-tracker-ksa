@@ -1,7 +1,10 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="../admin/index.php">
+
+
    <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-book"></i>
   </div> 
@@ -60,7 +63,7 @@
 
 <!-- Nav Item - Profile -->
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="../admin/user_profile.php">
     <i class="fas fa-fw fa-user-alt"></i>
     <span>Profile</span></a>
 </li>
