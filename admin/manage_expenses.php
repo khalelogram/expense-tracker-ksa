@@ -7,14 +7,15 @@ include('inc/header.php');
 // $query = "SELECT * FROM userexpense ";
 // $query .= "WHERE user_id = '1'";
 
-$query = "SELECT * FROM userexpense ";
-$query .= " WHERE user_id = 3 ";
-$query .= "ORDER BY expense_item ASC";
-
-$result = mysqli_query($db, $query);
-if(!$result) {
-  exit("Data query failed:" . mysqli_error(db_connection()));
+$id = $_GET['delete'] ?? null;
+if(isset($_GET['delete'])) {
+  delete_user_expense($id);
+} else {
+  $result = show_user_expense();
 }
+
+
+
 
 ?>
 
@@ -138,7 +139,7 @@ if(!$result) {
                       <td><?php echo $userex['expense_item']; ?></td>
                       <td><?php echo $userex['expense_cost']; ?></td>
                       <td><?php echo $userex['expense_date']; ?></td>
-                      <td><a href="manage_expenses.php?delete=<?php echo $userex['id']; ?>">Delete</a></td>
+                      <td><a href="manage_expenses.php?delete=<?php echo esc_html(esc_u($userex['id'])); ?>">Delete</a></td>
                     </tr>
                   <?php endwhile; ?>
                   </tbody>

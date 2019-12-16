@@ -15,3 +15,27 @@ function insert_expenses($expense_item) {
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
 }
+
+
+function show_user_expense() {
+  global $db;
+  $query = "SELECT * FROM userexpense ";
+  $query .= " WHERE user_id = 1 ";
+  $query .= "ORDER BY expense_item ASC";
+
+  $result = mysqli_query($db, $query);
+  check_query_from_db($result);
+  return $result;
+}
+
+
+function delete_user_expense($id) {
+  global $db;
+  $query = "DELETE FROM userexpense ";
+  $query .= "WHERE id = '" . $id . "' ";
+  $query .= "LIMIT 1";
+
+  $result = mysqli_query($db, $query);
+  check_query_from_db($result);
+  header("Location: manage_expenses.php");
+}
