@@ -15,8 +15,7 @@ if(!$result) {
 ?>
 <style type="text/css">
   .spacing{height: 30px;}
-  .btn-style{
-    width:150px;
+  .btn-style, .btn-save{
     display: block;
     background: #4e73df;
     color:white !important;
@@ -90,12 +89,12 @@ if(!$result) {
 <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                 <img class="img-profile rounded-circle" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>">
               </a>
 <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="user_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -107,7 +106,7 @@ if(!$result) {
               </div>
             </li>
 
-         </ul>
+         </ul>    
 
         </nav>
 <!-- End of Topbar -->
@@ -118,12 +117,13 @@ if(!$result) {
         <div class="col-md-12 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
               <form action="update_profile.php" method="POST" enctype="multipart/form-data">
-                <a class="btn-update btn-style">Update Profile</a>
+                <a class="btn-update btn-style"><i class="fas fa-user-edit fa-sm fa-fw  text-gray-400"></i></a>
                 <input type="submit" value="Save Profile" class="btn-save btn-style" name="submit">
                 <?php while($row = mysqli_fetch_assoc($result)) : ?>
                   <input type="hidden" name="userid" id="userid" value="<?php echo $row['id']; ?>">
+
                   <div class="text-center">                   
-                        <img style="height:200px;width:200px;border-radius: 50%;margin-top:30px;margin-bottom: 10px;" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>"  class="fileToUpload_show">
+                        <img style="height:200px;width:200px;border-radius: 50%;margin-top:50px;margin-bottom: 10px;" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>"  class="fileToUpload_show">
                         <input type="file" name="myfile" id="fileToUpload" class="fileToUpload_edit" style="display:none;">
                         <h1 class="edit_fullname" style="display: none;"><input type="text" name="fullname" id="fullname" class="" style="border:none;border-color: transparent;" value="<?php echo $row['fullname']; ?>"></h1>  
                         <h1 class="display_fullname" ><?php echo $row['fullname']; ?></h1>
