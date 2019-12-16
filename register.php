@@ -1,6 +1,33 @@
 
+<?php
+require_once('admin/private/init.php'); 
 
 
+if(isset($_POST['submit']))
+  {
+    $fullname=$_POST['fullname'];
+    $username=$_POST['username'];
+    $mobilenumber=$_POST['mobilenumber'];
+    $email=$_POST['email'];
+    $password=md5($_POST['password']);
+    // $cpassword=md5($_POST['cpass']);
+    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    $msg="This email  associated with another account";
+    }
+    else{
+    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+    if ($query) {
+    $msg="You have successfully registered";
+  }
+  else
+    {
+      $msg="Something Went Wrong. Please try again";
+    }
+}
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +47,8 @@
 
   <!-- Custom styles for this template-->
   <link href="admin/css/style.min.css" rel="stylesheet">
+  
+
 
 </head>
 
@@ -37,32 +66,36 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user" action="process.php" method="POST">
+
+
+              <form class="user" action="" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="Fullname">
+                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="Username">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="MobileNumber">
+                    <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="Email">
+                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="Password">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
                   </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="Cpass">
-                  </div>
+                 <!--  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="cpass">
+                  </div> -->
                 </div>
-                 <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+                 <button type="submit" value="Register Account" name="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
                  <a href="index.php"></a>
               </form>
+
+
               <hr>
               <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
