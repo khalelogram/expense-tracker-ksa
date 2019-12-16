@@ -99,15 +99,25 @@ include('inc/header.php');
 
           <!-- Content Row -->
           <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Today's Expense</div>
+                      <?php
+                        $todays_date = date('Y-m-d');
+                        $query = "SELECT SUM(expense_cost) AS 'todays_cost' ";
+                        $query .= "FROM userexpense ";
+                        $query .= "WHERE expense_date = '" . $todays_date . "'";
+                        $result = mysqli_query($db, $query);
+                        if(!$result) {
+                          exit("Data query failed:" . mysqli_error($db));
+                        }
+                        $user_today_expense = mysqli_fetch_assoc($result);
+                        mysqli_free_result($result);
+                      ?>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$<?php echo $user_today_expense['todays_cost']; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
