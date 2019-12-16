@@ -1,4 +1,5 @@
 <?php
+
 	require_once('private/init.php');
 	global $db;
 	$email = $_POST['email'];
@@ -54,7 +55,7 @@
 
 
 	$currentDir = getcwd();
-    $uploadDirectory = "";
+    $uploadDirectory = "/img/";
 
     $errors = []; // Store all foreseen and unforseen errors here
 
