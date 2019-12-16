@@ -10996,3 +10996,12 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.formcp{
+      padding-top: 60px;
+      margin: 0 auto; 
+      width:1000px;
+    }
+    .changePass{
+      padding-left: 60px;
+    }
