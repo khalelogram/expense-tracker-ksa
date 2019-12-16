@@ -93,7 +93,8 @@
         }
     }
 
-	die();
+	// die();
+	
 	$sql = "UPDATE users SET email='".$email."', mobile_number='".$mobile_number."', user_bio='".$user_bio."', fullname='".$fullname."', user_image='".$_FILES['myfile']['name']."' WHERE id='".$userid."';";
 
 	if (mysqli_query($db, $sql)) {
