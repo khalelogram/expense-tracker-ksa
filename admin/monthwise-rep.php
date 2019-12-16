@@ -91,18 +91,16 @@ include('inc/header.php');
 
 
    <!-- START OF MAIN CONTENT -->
-<h3 style="padding-left: 5px">CHECK YOUR MONTHLY EXPENSES</h3>
-
-
       <div class="container" style="display: flex;">
               <div class="col-md-4">
               <form role="form" method="post" action="monthwise-rep.php" name="bwdatesreport">
                 <div class="form-group">
-                  <label style="font-size: 25px;">From</label>
+                  <h5 style="padding-left: 5px">CHECK YOUR MONTHLY EXPENSES</h5>
+                  <label style="font-size: 15px;">From</label>
                   <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
                 </div>
                 <div class="form-group">
-                  <label style="font-size: 25px;">To</label>
+                  <label style="font-size: 15px;">To</label>
                   <input class="form-control" type="date"  id="todate" name="todate" required="true">
                 </div>
                   

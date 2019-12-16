@@ -1,24 +1,23 @@
+
 <?php
 require_once('admin/private/init.php'); 
-include('admin/inc/header.php');
+
 
 if(isset($_POST['submit']))
   {
-    $fname=$_POST['fullname'];
+    $fullname=$_POST['fullname'];
     $username=$_POST['username'];
-    $mobno=$_POST['mobilenumber'];
+    $mobilenumber=$_POST['mobilenumber'];
     $email=$_POST['email'];
     $password=md5($_POST['password']);
     // $cpassword=md5($_POST['cpass']);
-
-
-    $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
+    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
     $msg="This email  associated with another account";
     }
     else{
-    $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fname', '$password', '$mobno', '$username')");
+    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
     if ($query) {
     $msg="You have successfully registered";
   }
@@ -29,6 +28,27 @@ if(isset($_POST['submit']))
 }
 }
  ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="admin/fonts/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="admin/css/style.min.css" rel="stylesheet">
+  
+
 
 </head>
 
@@ -54,7 +74,7 @@ if(isset($_POST['submit']))
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="Username">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                   </div>
                   <div class="col-sm-6">
                     <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
