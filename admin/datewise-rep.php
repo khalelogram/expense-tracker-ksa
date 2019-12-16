@@ -1,4 +1,3 @@
-
 <?php 
 require_once('private/init.php');
 include('inc/header.php');
@@ -92,27 +91,102 @@ include('inc/header.php');
 
 
    <!-- START OF MAIN CONTENT -->
-<h1>CHECK YOUR DAILY EXPENSES</h1>
+<h3 style="padding-left: 5px">CHECK YOUR DAILY EXPENSES</h3>
 
 
-            <div class="col-md-12">
-              <form role="form" method="post" action="datewise-rep-details.php" name="bwdatesreport">
+      <div class="container" style="display: flex;">
+              <div class="col-md-4">
+              <form role="form" method="post" action="datewise-rep.php" name="bwdatesreport">
                 <div class="form-group">
-                  <label style="font-size: 25px;">From Date</label>
+                  <label style="font-size: 25px;">From</label>
                   <input class="form-control" type="date"  id="fromdate" name="fromdate" required="true">
                 </div>
                 <div class="form-group">
-                  <label style="font-size: 25px;">To Date</label>
+                  <label style="font-size: 25px;">To</label>
                   <input class="form-control" type="date"  id="todate" name="todate" required="true">
                 </div>
-                
-              
-                
+                  
                 <div class="form-group has-success">
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
                 
                 </form>
+              </div>
+<!-- START OF REPORT RESULT -->
+<div class="col-md-8">
+<div class="row">
+      <div class="col-lg-12">
+      
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+            <div class="col-md-12">
+          
+<?php
+$fdate=$_POST['fromdate'];
+ $tdate=$_POST['todate'];
+?>
+<h4 align="center" style="color:#1c10d0">Daily expenses report from <?php echo $fdate?> to <?php echo $tdate?></h4>
+<hr />
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                <tr style="background-color: #4E73DF; color: white;">
+              <th>NO</th>
+              <th>Date</th>
+              <th>Expense Amount</th>
+                </tr>
+                                        </tr>
+                                        </thead>
+ <?php
+// $userid=$_SESSION['detsuid'];
+$ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM `userexpense`  where (expense_date BETWEEN '$fdate' and '$tdate')  group by expense_date");
+// && (user_id='$userid')
+
+
+// this code will check your connection to your database.
+//  if ($db) { 
+//   echo 'connected';
+// } else {
+//   echo 'not connected';
+// }
+$cnt=1;
+$totalsexp=0;
+while ($row=mysqli_fetch_array($ret)) {
+
+?>
+              
+                <tr>
+                  <td><?php echo $cnt;?></td>
+            
+                  <td><?php  echo $row['expense_date'];?></td>
+                  <td><?php  echo $ttlsl=$row['totaldaily'];?></td>
+           
+           
+                </tr>
+                <?php
+                $totalsexp+=$ttlsl; 
+$cnt=$cnt+1;
+}?>
+
+ <tr>
+  <th colspan="2" style="background-color: #2b35af; color: white; text-align:center">Grand Total</th>     
+  <td><?php echo $totalsexp;?></td>
+ </tr>     
+
+                                    </table>
+
+            </div>
+          </div>
+        </div><!-- /.panel-->
+      </div><!-- /.col-->
+    </div><!-- /.row -->
+<!-- END OF REPORT RESULT -->
+
+
+
+</div>
             </div>
                 
               
