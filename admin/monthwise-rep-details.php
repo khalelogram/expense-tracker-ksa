@@ -1,10 +1,7 @@
-
 <?php
 include('private/init.php');
 include('inc/header.php'); 
-if (strlen($_SESSION['detsuid']!=0)) {
-  header('location:logout.php');
-  } else{
+
 ?>
 
 <body id="page-top">
@@ -100,32 +97,41 @@ if (strlen($_SESSION['detsuid']!=0)) {
       <div class="col-lg-12">
       
         <div class="panel panel-default">
-          <div class="panel-heading">Monthhwise Expense Report</div>
-          <div class="panel-body">
+
+            <div class="panel-body">
 
             <div class="col-md-12">
           
 <?php
 $fdate=$_POST['fromdate'];
  $tdate=$_POST['todate'];
-$rtype=$_POST['requesttype'];
 ?>
-<h5 align="center" style="color:blue">Monthwise Expense Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
+<h5 align="center" style="color:#1c10d0">Daily Expenses Report from <?php echo $fdate?> to <?php echo $tdate?></h5>
 <hr />
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>
-                                            <tr>
+                <tr style="background-color: #4E73DF; color: white;">
               <th>S.NO</th>
-              <th>Month-Year</th>
+              <th>Date</th>
               <th>Expense Amount</th>
                 </tr>
                                         </tr>
                                         </thead>
  <?php
-$userid=$_SESSION['detsuid'];
-$ret=mysqli_query($db,"SELECT month(expense_date) as rptmonth,year(expense_date) as rptyear,SUM(expense_cost) as totalmonth FROM userexpense  where (expense_date BETWEEN '$fdate' and '$tdate') && (user_id='$userid') group by month(expense_date),year(expense_date)");
+// $userid=$_SESSION['detsuid'];
+$ret=mysqli_query($db,"SELECT month(expense_date) as rptmonth,year(expense_date) as rptyear,SUM(expense_cost) as totalmonth FROM userexpense  where (expense_date BETWEEN '$fdate' and '$tdate') group by month(expense_date),year(expense_date)");
+// && (user_id='$userid')
+
+
+// this code will check your connection to your database.
+//  if ($db) { 
+//   echo 'connected';
+// } else {
+//   echo 'not connected';
+// }
 $cnt=1;
+$totalsexp=0;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
@@ -141,17 +147,13 @@ while ($row=mysqli_fetch_array($ret)) {
                 <?php
                 $totalsexp+=$ttlsl; 
 $cnt=$cnt+1;
-}?>$cnt+1;
 }?>
-
  <tr>
-  <th colspan="2" style="text-align:center">Grand Total</th>     
+  <th colspan="2" style="background-color: #2b35af; color: white; text-align:center">Grand Total</th>     
   <td><?php echo $totalsexp;?></td>
  </tr>     
 
                                     </table>
-
-
 
             </div>
           </div>
@@ -167,4 +169,4 @@ $cnt=$cnt+1;
 
 
  
-<?php } ?>
+<?php  ?>
