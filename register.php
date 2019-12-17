@@ -2,8 +2,6 @@
 require_once('admin/private/init.php'); 
 
 
-
-
 if(isset($_POST['submit']))
   {
     $fullname=$_POST['fullname'];
@@ -24,6 +22,7 @@ if(isset($_POST['submit']))
     echo 'alert("Email address already in use.")';
     echo '</script>';
     }
+
     $ret=mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
@@ -31,14 +30,7 @@ if(isset($_POST['submit']))
     echo 'alert("Username already in use.")';
     echo '</script>';
     }
-    $ret=mysqli_query($db, "SELECT mobile_number FROM users WHERE mobilenumber='$mobilenumber'");
-    $result=mysqli_fetch_array($ret);
-    if($result>0){
-    echo '<script language="javascript">';
-    echo 'alert("Mobile number already in use.")';
-    echo '</script>';
-    }
-
+    
 
     else{
     $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
@@ -69,11 +61,12 @@ if(isset($_POST['submit']))
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Register</title>
+  <title>Expense Tracker - Register</title>
 
   <!-- Custom fonts for this template-->
   <link href="admin/fonts/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="fonts/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
   <link href="admin/css/style.min.css" rel="stylesheet">
@@ -98,7 +91,7 @@ if(isset($_POST['submit']))
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
 
-              <form class="user" action="index.php" method="POST">
+              <form class="user" action="" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname" required="required">
                 </div>
@@ -122,7 +115,7 @@ if(isset($_POST['submit']))
                   </div> -->
                 </div>
                  <button type="submit" value="Register Account" name="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
-                 <a href="index.php"></a>
+                <a href="index.php"></a>
               </form>
 
 
