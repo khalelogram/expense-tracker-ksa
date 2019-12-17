@@ -21,24 +21,37 @@ if(isset($_POST['submit']))
     $result=mysqli_fetch_array($ret);
     if($result>0){
     echo '<script language="javascript">';
-    echo 'alert("Email address is already in use.")';
+    echo 'alert("Email address already in use.")';
     echo '</script>';
     }
     $ret=mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
     echo '<script language="javascript">';
-    echo 'alert("Username is already in use.")';
+    echo 'alert("Username already in use.")';
     echo '</script>';
     }
+    $ret=mysqli_query($db, "SELECT mobile_number FROM users WHERE mobilenumber='$mobilenumber'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    echo '<script language="javascript">';
+    echo 'alert("Mobile number already in use.")';
+    echo '</script>';
+    }
+
+
     else{
     $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
     if ($query) {
-    $msg="You have successfully registered";
+    echo '<script language="javascript">';
+    echo 'alert("You are now successfully registered!")';
+    echo '</script>';
   }
   else
     {
-      $msg="Something Went Wrong. Please try again";
+    echo '<script language="javascript">';
+    echo 'alert("Something went wrong.")';
+    echo '</script>';
     }
 }
 }
@@ -85,7 +98,7 @@ if(isset($_POST['submit']))
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
 
-              <form class="user" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+              <form class="user" action="index.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname" required="required">
                 </div>
@@ -94,7 +107,7 @@ if(isset($_POST['submit']))
                     <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required="required">
                   </div>
                   <div class="col-sm-6">
-                <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber" required="required">
+                <input type="tel" class="form-control form-control-user" id="mobile" placeholder="11-digit Mobile Number" name="mobilenumber" pattern="[0-9]{11}" required="required">
                   </div>
                 </div>
                 <div class="form-group">
