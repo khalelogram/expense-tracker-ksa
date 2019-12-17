@@ -1,19 +1,3 @@
-<?php
-
-include 'admin/private/database.php';
-include 'admin/inc/header.php';
-include 'admin/private/functions.php';
-$valid = false;
-$msg = "";
-if(isset($_POST['submit'])){
-  $msg = createUser();
-  if(strlen($msg) > 0){
-    $valid = true;
-  }else{
-    $valid = false;
-  }
-}
-?>
 
 
 <body class="bg-gradient-primary">
@@ -42,14 +26,6 @@ if(isset($_POST['submit'])){
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"  autocomplete="off">
 
-                        <?php 
-                          $typeOfError = "success";
-                          if($msg == "Invalid Username/Password") {
-                            $typeOfError = "danger";
-                          }
-
-                          if($valid) echo "<div class='alert alert-$typeOfError'>$msg</div>";
-                        ?>
 
                     </div>
                     <div class="form-group">

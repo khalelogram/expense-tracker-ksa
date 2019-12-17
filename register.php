@@ -42,8 +42,35 @@ if(isset($_POST['submit']))
 }
  ?>
 
+<?php
+require_once('admin/private/init.php'); 
 
 
+if(isset($_POST['submit']))
+  {
+    $fullname=$_POST['fullname'];
+    $username=$_POST['username'];
+    $mobilenumber=$_POST['mobilenumber'];
+    $email=$_POST['email'];
+    $password=md5($_POST['password']);
+    // $cpassword=md5($_POST['cpass']);
+    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    $msg="This email  associated with another account";
+    }
+    else{
+    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+    if ($query) {
+    $msg="You have successfully registered";
+  }
+  else
+    {
+      $msg="Something Went Wrong. Please try again";
+    }
+}
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,6 +90,8 @@ if(isset($_POST['submit']))
 
   <!-- Custom styles for this template-->
   <link href="admin/css/style.min.css" rel="stylesheet">
+  
+
 
 
 </head>
@@ -82,7 +111,6 @@ if(isset($_POST['submit']))
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
               <form class="user" action="" method="POST">
-
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
                 </div>
@@ -91,7 +119,7 @@ if(isset($_POST['submit']))
                     <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
+                <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
                   </div>
                 </div>
                 <div class="form-group">
@@ -108,6 +136,8 @@ if(isset($_POST['submit']))
                  <button type="submit" value="Register Account" name="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
                  <a href="index.php"></a>
               </form>
+
+
               <hr>
               <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
