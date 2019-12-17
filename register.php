@@ -20,7 +20,16 @@ if(isset($_POST['submit']))
     $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
-    $msg="This email associated with another account";
+    echo '<script language="javascript">';
+    echo 'alert("Email address is already in use.")';
+    echo '</script>';
+    }
+    $ret=mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    echo '<script language="javascript">';
+    echo 'alert("Username is already in use.")';
+    echo '</script>';
     }
     else{
     $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
