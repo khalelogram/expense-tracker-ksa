@@ -38,6 +38,7 @@ if(isset($_POST['submit']))
     echo '<script language="javascript">';
     echo 'alert("You are now successfully registered!")';
     echo '</script>';
+    header('location:index.php');
   }
   else
     {
