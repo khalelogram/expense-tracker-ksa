@@ -1,6 +1,7 @@
 <?php 
 require_once('private/init.php');
 include('inc/header.php');
+error_reporting(0);
  ?>
 
 <body id="page-top">
@@ -105,7 +106,7 @@ include('inc/header.php');
                 </div>
                   
                 <div class="form-group has-success">
-                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Check now!</button>
                 </div>
                 
                 </form>
