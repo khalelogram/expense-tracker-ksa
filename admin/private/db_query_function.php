@@ -14,6 +14,9 @@ function insert_expenses($expense_item) {
   // echo $query;
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
+
+
+
 }
 
 
@@ -39,3 +42,4 @@ function delete_user_expense($id) {
   check_query_from_db($result);
   header("Location: manage_expenses.php");
 }
+
