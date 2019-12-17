@@ -24,13 +24,13 @@ if(isset($_POST['submit']))
       echo "Please enter your full name.";
     }
     // $cpassword=md5($_POST['cpass']);
-    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
+    $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
     $msg="This email associated with another account";
     }
     else{
-    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+    $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
     if ($query) {
     $msg="You have successfully registered";
   }
@@ -42,35 +42,7 @@ if(isset($_POST['submit']))
 }
  ?>
 
-<?php
-require_once('admin/private/init.php'); 
 
-
-if(isset($_POST['submit']))
-  {
-    $fullname=$_POST['fullname'];
-    $username=$_POST['username'];
-    $mobilenumber=$_POST['mobilenumber'];
-    $email=$_POST['email'];
-    $password=md5($_POST['password']);
-    // $cpassword=md5($_POST['cpass']);
-    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
-    $result=mysqli_fetch_array($ret);
-    if($result>0){
-    $msg="This email  associated with another account";
-    }
-    else{
-    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
-    if ($query) {
-    $msg="You have successfully registered";
-  }
-  else
-    {
-      $msg="Something Went Wrong. Please try again";
-    }
-}
-}
- ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,6 +82,7 @@ if(isset($_POST['submit']))
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
+
               <form class="user" action="" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
