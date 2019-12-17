@@ -1,3 +1,46 @@
+<?php
+require_once('admin/private/init.php'); 
+
+if(isset($_POST['submit']))
+  {
+    $fullname=$_POST['fullname'];
+    if (empty($fullname)){
+      echo "Please enter your full name.";
+    }
+    $username=$_POST['username'];
+    if (empty($username)){
+      echo "Please enter your full name.";
+    }
+    $mobilenumber=$_POST['mobilenumber'];
+    if (empty($mobilenumber)){
+      echo "Please enter your full name.";
+    }
+    $email=$_POST['email'];
+    if (empty($email)){
+      echo "Please enter your full name.";
+    }
+    $password=md5($_POST['password']);
+    if (empty($password)){
+      echo "Please enter your full name.";
+    }
+    // $cpassword=md5($_POST['cpass']);
+    $ret=mysqli_query($db, "SELECT email FROM tbluser WHERE email='$email'");
+    $result=mysqli_fetch_array($ret);
+    if($result>0){
+    $msg="This email associated with another account";
+    }
+    else{
+    $query=mysqli_query($db, "INSERT INTO tbluser (email, fullname, password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+    if ($query) {
+    $msg="You have successfully registered";
+  }
+  else
+    {
+      $msg="Something Went Wrong. Please try again";
+    }
+}
+}
+ ?>
 
 <?php
 require_once('admin/private/init.php'); 
@@ -50,6 +93,7 @@ if(isset($_POST['submit']))
   
 
 
+
 </head>
 
 <body class="bg-gradient-primary" style="overflow:hidden">
@@ -66,8 +110,6 @@ if(isset($_POST['submit']))
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-
-
               <form class="user" action="" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
@@ -77,7 +119,7 @@ if(isset($_POST['submit']))
                     <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
+                <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
                   </div>
                 </div>
                 <div class="form-group">
