@@ -1,28 +1,21 @@
 <?php
 require_once('admin/private/init.php'); 
 
+
+
+
 if(isset($_POST['submit']))
   {
     $fullname=$_POST['fullname'];
-    if (empty($fullname)){
-      echo "Please enter your full name.";
-    }
+    
     $username=$_POST['username'];
-    if (empty($username)){
-      echo "Please enter your full name.";
-    }
+   
     $mobilenumber=$_POST['mobilenumber'];
-    if (empty($mobilenumber)){
-      echo "Please enter your full name.";
-    }
+    
     $email=$_POST['email'];
-    if (empty($email)){
-      echo "Please enter your full name.";
-    }
+    
     $password=md5($_POST['password']);
-    if (empty($password)){
-      echo "Please enter your full name.";
-    }
+    
     // $cpassword=md5($_POST['cpass']);
     $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
@@ -83,24 +76,24 @@ if(isset($_POST['submit']))
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
 
-              <form class="user" action="" method="POST">
+              <form class="user" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname">
+                  <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname" required="required">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
+                    <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required="required">
                   </div>
                   <div class="col-sm-6">
-                <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber">
+                <input type="text" class="form-control form-control-user" id="mobile" placeholder="Mobile Number" name="mobilenumber" required="required">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
+                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email" required="required">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password" required="required">
                   </div>
                  <!--  <div class="col-sm-6">
                     <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="cpass">
