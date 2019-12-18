@@ -72,6 +72,7 @@ $tdate=$_POST['todate'];
 $result = show_monthly_report($fdate,$tdate);
 
 $cnt=1;
+
 $totalsexp=null;
 
 while ($row=mysqli_fetch_array($result)) {

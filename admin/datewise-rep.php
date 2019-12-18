@@ -72,7 +72,7 @@ $tdate=$_POST['todate'];
 $result = show_daily_report($fdate,$tdate);
 
 $cnt=1;
-$totalsexp=null;
+$totalsexp=0;
 
 while ($row=mysqli_fetch_array($result)) {
 ?>
