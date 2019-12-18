@@ -12,6 +12,7 @@ if(isset($_POST['submit'])) {
     
     $password=md5($_POST['password']);
     
+
     // $cpassword=md5($_POST['cpass']);
     $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
@@ -27,14 +28,18 @@ if(isset($_POST['submit'])) {
       echo '<script language="javascript">';
       echo 'alert("Username already in use.")';
       echo '</script>';
-    } else{
+    }
+    
+     else{
     $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
+
     if ($query) {
       $query = "SELECT id FROM users ";
       $query .= "WHERE email = '$email'";
       $result = mysqli_query($db, $query);
-      $get_user_id = mysqli_fetch_assoc($result);
-      $_SESSION['user_id']= $get_user_id['id'];
+      $get_user = mysqli_fetch_assoc($result);
+      $_SESSION['user_id']= $get_user['id'];
+      $_SESSION['full_name']= $get_user['fullname'];
       echo '<script language="javascript">';
       echo 'alert("You are now successfully registered!")';
       echo '</script>';
