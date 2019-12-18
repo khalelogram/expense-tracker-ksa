@@ -151,12 +151,8 @@ $ret=mysqli_query($db,"SELECT year(expense_date) as rptyear,SUM(expense_cost) as
 //   echo 'not connected';
 // }
 $cnt=1;
-
 $totalsexp=0;
 while ($row=mysqli_fetch_array($ret)) {
-
-$totalsexp=null;
-
 
 ?>
               
