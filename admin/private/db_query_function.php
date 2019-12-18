@@ -6,13 +6,12 @@ function insert_expenses($expense_item) {
   $query = "INSERT INTO userexpense ";
   $query .= "(user_id, expense_date, expense_item, expense_cost, note_date) ";
   $query .= "VALUES (";
-  $query .= "'2', ";
+  $query .= "'" . $_SESSION['user_id'] . "', ";
   $query .= "'" . __escape_string($expense_item['date']) . "', ";
   $query .= "'" . __escape_string($expense_item['item']) . "', ";
   $query .= "'" . __escape_string($expense_item['costitem']) . "', ";
   $query .= "now()";
   $query .= ")";
-  // echo $query;
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
 }
@@ -21,9 +20,8 @@ function insert_expenses($expense_item) {
 function show_user_expense() {
   global $db;
   $query = "SELECT * FROM userexpense ";
-  $query .= " WHERE user_id = 2 ";
+  $query .= "WHERE user_id = '" . $_SESSION['user_id'] . "'";
   $query .= "ORDER BY expense_item ASC";
-
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
@@ -60,6 +58,12 @@ function show_monthly_report($fdate,$tdate){
             WHERE (expense_date BETWEEN '$fdate' AND '$tdate') 
             GROUP BY month(expense_date),year(expense_date)";// && (user_id='$userid')
             
+function show_all_today_and_yesterday($date) {
+  global $db;
+  $query = "SELECT SUM(expense_cost) AS 'cost' ";
+  $query .= "FROM userexpense ";
+  $query .= "WHERE expense_date = '" . $date . "' AND user_id = '" . $_SESSION['user_id'] . "'";
+  
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
@@ -83,6 +87,9 @@ function show_all_week_and_month_exp($past_date, $current_date) {
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
   $query .= "FROM userexpense ";
   $query .= "WHERE expense_date BETWEEN'" . $past_date . "' AND '" . $current_date . "'";
+  
+
+  $query .= "WHERE expense_date BETWEEN'" . $past_date . "' AND '" . $current_date . "'  AND user_id = '" . $_SESSION['user_id'] . "'";
   
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
@@ -110,6 +117,7 @@ function find_username($username) {
   mysqli_free_result($result);
   return $user; // returns an assoc. array
 }
+
 function show_all_today_and_yesterday($expense) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
