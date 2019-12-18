@@ -1,9 +1,7 @@
 <?php
 require_once('admin/private/init.php'); 
 
-
-if(isset($_POST['submit']))
-  {
+if(isset($_POST['submit'])) {
     $fullname=$_POST['fullname'];
     
     $username=$_POST['username'];
@@ -18,34 +16,35 @@ if(isset($_POST['submit']))
     $ret=mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
-    echo '<script language="javascript">';
-    echo 'alert("Email address already in use.")';
-    echo '</script>';
+      echo '<script language="javascript">';
+      echo 'alert("Email address already in use.")';
+      echo '</script>';
     }
 
     $ret=mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
-    echo '<script language="javascript">';
-    echo 'alert("Username already in use.")';
-    echo '</script>';
-    }
-    
-
-    else{
+      echo '<script language="javascript">';
+      echo 'alert("Username already in use.")';
+      echo '</script>';
+    } else{
     $query=mysqli_query($db, "INSERT INTO users (email, fullname, hashed_password, mobile_number, username) VALUES('$email', '$fullname', '$password', '$mobilenumber', '$username')");
     if ($query) {
-    echo '<script language="javascript">';
-    echo 'alert("You are now successfully registered!")';
-    echo '</script>';
+      $query = "SELECT id FROM users ";
+      $query .= "WHERE email = '$email'";
+      $result = mysqli_query($db, $query);
+      $get_user_id = mysqli_fetch_assoc($result);
+      $_SESSION['user_id']= $get_user_id['id'];
+      echo '<script language="javascript">';
+      echo 'alert("You are now successfully registered!")';
+      echo '</script>';
+      header("Location: index.php");
+  } else {
+      echo '<script language="javascript">';
+      echo 'alert("Something went wrong.")';
+      echo '</script>';
+   }
   }
-  else
-    {
-    echo '<script language="javascript">';
-    echo 'alert("Something went wrong.")';
-    echo '</script>';
-    }
-}
 }
  ?>
 
@@ -90,7 +89,6 @@ if(isset($_POST['submit']))
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-
               <form class="user" action="" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="fullname" placeholder="Full Name" name="fullname" required="required">

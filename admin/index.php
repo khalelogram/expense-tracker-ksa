@@ -1,6 +1,7 @@
 <?php 
 
 require_once('private/init.php');
+require_login();
 include('inc/header.php');
 
 ?>
@@ -30,6 +31,7 @@ include('inc/header.php');
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <!-- <?php echo $_SESSION['user_id']; ?> -->
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -67,7 +69,7 @@ include('inc/header.php');
                         $result = show_all_today_and_yesterday($yesterday_date);
                         $user_yesterday_expense = mysqli_fetch_assoc($result);
                       ?>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$<?php echo $user_yesterday_expense['cost']; ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$<?php echo $user_yesterday_expense['cost'];?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

@@ -2,6 +2,23 @@
 <?php
 require_once('admin/private/init.php');
 
+
+if(isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  if($username === "" || $password === "") {
+    echo "Username cannot be blank.";
+  }
+  $user = find_username($username);
+  if($user) {
+    log_in_admin($user);
+    header('Location: admin/index.php');
+  } else {
+    echo "Login failure";
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -62,10 +79,10 @@ require_once('admin/private/init.php');
                    
                   <form class="user" action="" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Enter Username"  autocomplete="off" name="username" required="required">
+                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Enter Username"  autocomplete="off" name="username">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"  autocomplete="off" name="password" required="required">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"  autocomplete="off" name="password">
                     </div>
                     <!-- <div class="form-group">
                       <div class="custom-control custom-checkbox small">
