@@ -40,23 +40,57 @@ function delete_user_expense($id) {
   header("Location: manage_expenses.php");
 }
 
+function show_daily_report($fdate,$tdate){
+  global $db;
+  $query = "SELECT expense_date,SUM(expense_cost) AS totaldaily FROM `userexpense`
+            WHERE (expense_date BETWEEN '$fdate' AND '$tdate') 
+            GROUP BY expense_date";// && (user_id='$userid')
 
+  $result = mysqli_query($db, $query);
+  check_query_from_db($result);
+  return $result;
+}
+  
 function show_all_today_and_yesterday($expense) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
   $query .= "FROM userexpense ";
   $query .= "WHERE expense_date = '" . $expense . "'";
+  
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
 }
 
+function show_monthly_report($fdate,$tdate){
+  global $db;
+  $query = "SELECT month(expense_date) AS rptmonth,year(expense_date) 
+            AS rptyear,SUM(expense_cost) AS totalmonth FROM userexpense  
+            WHERE (expense_date BETWEEN '$fdate' AND '$tdate') 
+            GROUP BY month(expense_date),year(expense_date)";// && (user_id='$userid')
+  $result = mysqli_query($db, $query);
+  check_query_from_db($result);
+  return $result;
+}
 
 function show_all_week_and_month_exp($past_date, $current_date) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
   $query .= "FROM userexpense ";
   $query .= "WHERE expense_date BETWEEN'" . $past_date . "' AND '" . $current_date . "'";
+  
+  $result = mysqli_query($db, $query);
+  check_query_from_db($result);
+  return $result;
+}
+
+function show_yearly_report($fdate,$tdate){
+  global $db;
+  $query = "SELECT year(expense_date) AS rptyear,SUM(expense_cost) 
+            AS totalyear FROM userexpense  
+            WHERE (expense_date BETWEEN '$fdate' AND '$tdate') 
+            GROUP BY year(expense_date)";// && (user_id='$userid')
+
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
@@ -67,9 +101,8 @@ function show_this_year_expense($current_year) {
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
   $query .= "FROM userexpense ";
   $query .= "WHERE YEAR(expense_date) = '" . $current_year . "'";
+  
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
 }
-
-

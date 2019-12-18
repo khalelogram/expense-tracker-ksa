@@ -19,6 +19,9 @@
 
   <!-- Custom styles for this template-->
   <link href="<?php echo $doc_root . "css/style.min.css" ?>" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  
   <link href="<?php echo $doc_root . "css/custom.css" ?>" rel="stylesheet">
+
 
 </head>
