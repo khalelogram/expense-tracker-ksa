@@ -151,8 +151,12 @@ $ret=mysqli_query($db,"SELECT month(expense_date) as rptmonth,year(expense_date)
 //   echo 'not connected';
 // }
 $cnt=1;
+
 $totalsexp=0;
 while ($row=mysqli_fetch_array($ret)) {
+
+$totalsexp=null;
+
 
 ?>
               

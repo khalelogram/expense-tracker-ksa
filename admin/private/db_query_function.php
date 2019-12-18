@@ -1,5 +1,5 @@
 <?php
-
+​
 function insert_expenses($expense_item) {
   global $db;
   $query = "INSERT INTO userexpense ";
@@ -15,32 +15,32 @@ function insert_expenses($expense_item) {
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
 }
-
-
+​
+​
 function show_user_expense() {
   global $db;
   $query = "SELECT * FROM userexpense ";
   $query .= " WHERE user_id = 2 ";
   $query .= "ORDER BY expense_item ASC";
-
+​
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
 }
-
-
+​
+​
 function delete_user_expense($id) {
   global $db;
   $query = "DELETE FROM userexpense ";
   $query .= "WHERE id = '" . $id . "' ";
   $query .= "LIMIT 1";
-
+​
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   header("Location: manage_expenses.php");
 }
-
-
+​
+​
 function show_all_today_and_yesterday($expense) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
@@ -50,8 +50,8 @@ function show_all_today_and_yesterday($expense) {
   check_query_from_db($result);
   return $result;
 }
-
-
+​
+​
 function show_all_week_and_month_exp($past_date, $current_date) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
@@ -61,7 +61,7 @@ function show_all_week_and_month_exp($past_date, $current_date) {
   check_query_from_db($result);
   return $result;
 }
-
+​
 function show_this_year_expense($current_year) {
   global $db;
   $query = "SELECT SUM(expense_cost) AS 'cost' ";
@@ -71,8 +71,8 @@ function show_this_year_expense($current_year) {
   check_query_from_db($result);
   return $result;
 }
-
-
+​
+​
 function find_username($username) {
   global $db;
   $query = "SELECT * FROM users ";
@@ -84,5 +84,3 @@ function find_username($username) {
   mysqli_free_result($result);
   return $user; // returns an assoc. array
 }
-
-

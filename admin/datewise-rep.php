@@ -151,7 +151,7 @@ $ret=mysqli_query($db,"SELECT expense_date,SUM(expense_cost) as totaldaily FROM 
 //   echo 'not connected';
 // }
 $cnt=1;
-$totalsexp=0;
+$totalsexp=null;
 
 while ($row=mysqli_fetch_array($ret)) {
 
