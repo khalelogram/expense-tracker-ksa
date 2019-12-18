@@ -72,7 +72,7 @@ $tdate=$_POST['todate'];
 $result = show_yearly_report($fdate,$tdate);
 
 $cnt=1;
-$totalsexp=0;
+$totalsexp=null;
 
 while ($row=mysqli_fetch_array($result)) {
 ?>

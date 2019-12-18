@@ -1,6 +1,7 @@
 <?php
 require_once('private/init.php');
 include('inc/header.php');
+
 $sql = "SELECT id, fullname, email,user_image,user_bio,mobile_number FROM users where id = '1'";
 $result = mysqli_query($db, $sql);
 if(!$result) {
