@@ -1,17 +1,11 @@
 <?php
-
 require_once('private/init.php');
 include('inc/header.php');
-
-
-//Added by EC
 $sql = "SELECT id, fullname, email,user_image,user_bio,mobile_number FROM users where id = '1'";
-
 $result = mysqli_query($db, $sql);
 if(!$result) {
   exit("Data query failed:" . mysqli_error(db_connection()));
 }
-
 ?>
 <style type="text/css">
   .spacing{height: 30px;}
@@ -118,14 +112,14 @@ if(!$result) {
         <div class="col-md-12 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
               <form action="update_profile.php" method="POST" enctype="multipart/form-data">
-                <a class="btn-update btn-style"><i class="fas fa-user-edit fa-sm fa-fw  text-gray-400"></i></a>
-                <input type="submit" value="Save Profile" class="btn-save btn-style" name="submit">
-               
+                <a class="btn-update btn-style"><i class="fas fa-user-edit fa-sm fa-fw"></i></a>
+                  <button style="border:none;background: none;" type="submit" name="submit" class="btn-save"><i class="fas fa-save btn-save btn-style"></i></button>
+
                   <input type="hidden" name="userid" id="userid" value="<?php echo $row['id']; ?>">
 
                   <div class="text-center">                   
                         <img style="height:200px;width:200px;border-radius: 50%;margin-top:50px;margin-bottom: 10px;" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>"  class="fileToUpload_show">
-                        <input type="file" name="myfile" id="fileToUpload" class="fileToUpload_edit" style="display:none;">
+                        <input type="file" name="myfile" id="fileToUpload" class="fileToUpload_edit" style="display:none;margin: auto;">
                         <h1 class="edit_fullname" style="display: none;"><input type="text" name="fullname" id="fullname" class="" style="border:none;border-color: transparent;" value="<?php echo $row['fullname']; ?>"></h1>  
                         <h1 class="display_fullname" ><?php echo $row['fullname']; ?></h1>
                       <div class="bio" style="margin: 20px;">
@@ -135,12 +129,13 @@ if(!$result) {
                   </div>
                   <div class="details">
                     <div class="container">
-                      <div class="row">
+                      <div class="row ">
                         <div class="col-md">
-                         Email: <input type="text" name="email" id="email" class="form-control edge-corner" style="border:none;border-color: transparent;" value="<?php echo $row['email']; ?>">
+                         Email: <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" id="email" class="form-control edge-corner" style="border:none;border-color: transparent;" value="<?php echo $row['email']; ?>">
                         </div>
                         <div class="col-md">
-                         Contact: <input type="text" name="mobile_number" id="mobile_number" class="form-control edge-corner" style="border:none;border-color: transparent;" value="<?php echo $row['mobile_number']; ?>">
+                         Contact: <input type="text" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" required
+       minlength="11" maxlength=11 name="mobile_number" id="mobile_number" class="form-control edge-corner" style="border:none;border-color: transparent;" value="<?php echo $row['mobile_number']; ?>">
                         </div>
                       </div>
                     </div>
@@ -152,8 +147,6 @@ if(!$result) {
         </div>
       </div>
     </div>
-
-
 <!-- container -->
 
     </div>
@@ -181,7 +174,7 @@ if(!$result) {
     $('.user_bio_display').hide();
     $('.btn-save').show();
     $(this).hide();
-    $('.fileToUpload_show').hide();
+    // $('.fileToUpload_show').hide();
     $('.fileToUpload_edit').css('display','block');
   });  
 </script>
