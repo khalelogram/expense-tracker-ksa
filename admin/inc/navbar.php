@@ -43,8 +43,8 @@
   <!-- Nav Item - User Information -->
   <li class="nav-item dropdown no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-      <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+      <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $row["fullname"]; ?></span>
+                <img class="img-profile rounded-circle" src="img/<?php if($row['user_image'] == null || $row['user_image'] == null){ echo 'default_profile.jpg'; }else{ echo $row['user_image']; }?>">
     </a>
     <!-- Dropdown - User Information -->
     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
