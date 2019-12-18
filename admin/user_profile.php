@@ -1,17 +1,14 @@
 <?php
-
 require_once('private/init.php');
 include('inc/header.php');
 
 
 //Added by EC
 $sql = "SELECT id, fullname, email,user_image,user_bio,mobile_number FROM users where id = '1'";
-
 $result = mysqli_query($db, $sql);
 if(!$result) {
   exit("Data query failed:" . mysqli_error(db_connection()));
 }
-
 ?>
 <style type="text/css">
   .spacing{height: 30px;}
