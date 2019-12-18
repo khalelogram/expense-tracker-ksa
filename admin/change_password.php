@@ -1,5 +1,44 @@
-<?php include('inc/header.php'); ?>
+<?php
+session_start();
+include('private/init.php');
+error_reporting(0);
+if (strlen($_SESSION['userid']==0)) {
+  header('location:logout.php');
+  } else{
+if(isset($_POST['submit']))
+{
+$userid=$_SESSION['userid'];
+$cpassword=md5($_POST['currentpassword']);
+$newpassword=md5($_POST['newpassword']);
+$query=mysqli_query($con,"select ID from tbluser where ID='$userid' and   Password='$cpassword'");
+$row=mysqli_fetch_array($query);
+if($row>0){
+$ret=mysqli_query($con,"update tbluser set Password='$newpassword' where ID='$userid'");
+$msg= "Your password successully changed"; 
+} else {
 
+$msg="Your current password is wrong";
+}
+}
+?>
+
+<?php
+include 'inc/header.php';
+?>
+
+<script type="text/javascript">
+function checkpass()
+{
+if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value)
+{
+alert('New Password and Confirm Password field does not match');
+document.changepassword.confirmpassword.focus();
+return false;
+}
+return true;
+} 
+
+</script>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -82,9 +121,21 @@
 
         </nav>
         <!-- End of Topbar -->
-        
+        <h4 class="changePass">Change Password</h4>
 
-        <form class="formcp" >
+        <p style="font-size:18px; color:red" align="center"> <?php if($msg){
+    echo $msg;
+  }  ?> </p>
+
+        <?php
+$userid=$_SESSION['userid'];
+$ret=mysqli_query($con,"select * from tbluser where ID='$userid'");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
+
+?>
+
+        <form class="formcp" role="form" method="post" action="" name="changepassword" onsubmit="return checkpass();" >
     <div class="form-group">
       <label>Current Password</label>
       <input type="password" name="currentpassword" class=" form-control" required= "true" value="">
@@ -102,12 +153,16 @@
     </div>
     </div>
   </form>
+  <?php } ?>
       <style>
     .formcp{
-      padding-top: 90px;
+      padding-top: 60px;
       margin: 0 auto; 
       width:1000px;
     }
-      </style>
-      
+    .changePass{
+      padding-left: 60px;
+    }
+      </style>    
   <?php include('inc/footer.php'); ?>
+  <?php }  ?>
