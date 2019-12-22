@@ -9,7 +9,8 @@
 
   require_once('database.php');
   require_once('db_query_function.php');
+  require_once('auth_function.php');
   require_once('functions.php');
  
-
+  $current = date("Y-m-d");
   $db = db_connection();

@@ -10,6 +10,7 @@ if(isset($_POST['submit'])){
   $fdate=$_POST['fromdate'];
   $tdate=$_POST['todate'];
 }
+
  ?>
 
 <body id="page-top">
@@ -74,6 +75,7 @@ if(isset($_POST['submit'])){
 <?php
 // $userid=$_SESSION['detsuid'];
 $result = show_daily_report($fdate,$tdate);
+
 $cnt=1;
 $totalsexp=null;
 while ($row=mysqli_fetch_array($result)) {

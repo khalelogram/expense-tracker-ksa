@@ -73,16 +73,19 @@ function find_username($username) {
 
 
 
+
 // start of expenses report functions
 function show_daily_report($fdate,$tdate){
   global $db;
-  $query = "SELECT expense_date,SUM(expense_cost) AS totaldaily FROM `userexpense`
-            WHERE (expense_date BETWEEN '$fdate' AND '$tdate') 
-            GROUP BY expense_date";// && (user_id='$userid')
+  $query = "SELECT expense_date,SUM(expense_cost) AS totaldaily FROM userexpense ";
+  $query .= "WHERE (expense_date BETWEEN '$fdate' AND '$tdate') ";
+  $query .= "GROUP BY expense_date";
+
   $result = mysqli_query($db, $query);
   check_query_from_db($result);
   return $result;
 }
+
 function show_monthly_report($fdate,$tdate){
   global $db;
   $query = "SELECT month(expense_date) AS rptmonth,year(expense_date) 
@@ -94,6 +97,7 @@ function show_monthly_report($fdate,$tdate){
   check_query_from_db($result);
   return $result;
 }
+
 function show_yearly_report($fdate,$tdate){
   global $db;
   $query = "SELECT year(expense_date) AS rptyear,SUM(expense_cost) 
@@ -105,4 +109,3 @@ function show_yearly_report($fdate,$tdate){
   return $result;
 }
 // end of expenses report functions
-

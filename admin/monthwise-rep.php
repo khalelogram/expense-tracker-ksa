@@ -2,9 +2,14 @@
 require_once('private/init.php');
 $page_title = 'Monthly Report';
 include('inc/header.php');
-error_reporting(0);
-$fdate=$_POST['fromdate'];
-$tdate=$_POST['todate'];
+
+$fdate = null;
+$tdate = null;
+ 
+if(isset($_POST['submit'])){
+  $fdate=$_POST['fromdate'];
+  $tdate=$_POST['todate'];
+}
  ?>
 
 <body id="page-top">
@@ -69,6 +74,7 @@ $tdate=$_POST['todate'];
  <?php
 // $userid=$_SESSION['detsuid'];
 $result = show_monthly_report($fdate,$tdate);
+
 $cnt=1;
 $totalsexp=null;
 while ($row=mysqli_fetch_array($result)) {
