@@ -2,10 +2,15 @@
 require_once('private/init.php');
 $page_title = 'Daily Report';
 include('inc/header.php');
-error_reporting(0);
 
-$fdate=$_POST['fromdate'];
-$tdate=$_POST['todate'];
+$fdate = null;
+$tdate = null;
+ 
+if(isset($_POST['submit'])){
+  $fdate=$_POST['fromdate'];
+  $tdate=$_POST['todate'];
+}
+
  ?>
 
 <body id="page-top">
@@ -54,7 +59,7 @@ $tdate=$_POST['todate'];
             <div class="col-md-12">
 
   <!-- table header -->
-<h4 align="center">Daily expenses report from <?php echo $fdate?> to <?php echo $tdate?></h4>
+<h4 id="thdr" align="center">Daily expenses report from <?php echo $fdate?> to <?php echo $tdate?></h4>
 <hr/>
 <table id="datatable" class="table table-bordered dt-responsive nowrap">
     <thead>
@@ -72,8 +77,7 @@ $tdate=$_POST['todate'];
 $result = show_daily_report($fdate,$tdate);
 
 $cnt=1;
-$totalsexp=0;
-
+$totalsexp=null;
 while ($row=mysqli_fetch_array($result)) {
 ?>
           <tr>
