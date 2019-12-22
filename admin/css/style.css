@@ -1,0 +1,26 @@
+#smc{
+	display: flex;
+}
+#dif h5{
+	padding-left: 5px;
+}
+#dif label{
+	font-size: 15px;
+}
+#smc #thdr{
+	color: #1c10d0;
+}
+#smc #datatable{
+	border-collapse: collapse; 
+	border-spacing: 0; 
+	width: 100%;
+}
+#smc #datatable #tblheads{
+	background-color: #4E73DF; 
+	color: white;
+}
+#smc #grandttl{
+	background-color: #2b35af; 
+	color: white; 
+	text-align:center
+}
